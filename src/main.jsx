@@ -41,7 +41,6 @@ function App() {
     <main className="page">
       <header className="topbar">
         <div>
-          <p className="eyebrow">Лабораторная работа N8</p>
           <h1>Volga Mart</h1>
           <p className="subtitle">Ульяновский магазин техники для учебы и работы</p>
         </div>
