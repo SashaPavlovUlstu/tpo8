@@ -10,13 +10,14 @@
 - Vitest
 - Playwright
 - Semgrep
-- GitLab CI
+- GitLab CI / GitHub Actions
 
 ## Структура проекта
 
 ```text
 .
-├── .gitlab-ci.yml             # CI/CD пайплайн
+├── .github/workflows/ci.yml   # CI/CD пайплайн для GitHub Actions
+├── .gitlab-ci.yml             # CI/CD пайплайн для GitLab CI
 ├── README.md                  # инструкция по запуску
 ├── REPORT.md                  # краткий отчет по лабораторной работе
 ├── package.json               # зависимости и npm-скрипты
@@ -88,7 +89,7 @@ semgrep scan --config p/javascript .
 
 ## Как работает CI/CD пайплайн
 
-Пайплайн описан в `.gitlab-ci.yml` и содержит обязательные стадии:
+Для GitLab пайплайн описан в `.gitlab-ci.yml`. Для GitHub пайплайн описан в `.github/workflows/ci.yml` и запускается во вкладке `Actions`. Оба варианта содержат обязательные стадии:
 
 - `install`: устанавливает зависимости через `npm install` и проверяет сборку `npm run build`;
 - `unit_tests`: запускает `npm test`, сохраняет HTML/JSON-отчет покрытия;
@@ -115,3 +116,16 @@ git push -u origin main
 ```
 
 После push GitLab автоматически запустит пайплайн.
+
+## Загрузка в GitHub
+
+```bash
+git init
+git add .
+git commit -m "Add lab 8 CI/CD shop project"
+git branch -M main
+git remote add origin <URL_ВАШЕГО_GITHUB_РЕПОЗИТОРИЯ>
+git push -u origin main
+```
+
+После push откройте вкладку `Actions` в GitHub. Там появится workflow `CI/CD Lab 8` с job-ами `install`, `unit_tests`, `ui_tests`, `sast` и `report`.
